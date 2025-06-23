@@ -9,34 +9,40 @@ response.EnsureSuccessStatusCode(); // me da un status code
 string responseBody = await response.Content.ReadAsStringAsync();
 List<Tarea> PropsTarea = JsonSerializer.Deserialize<List<Tarea>>(responseBody);
 
-foreach (var prop in PropsTarea)
-{
-    Console.WriteLine($"\nTitle: {prop.Title} - Completed: {prop.Completed}");
-}
+var tareasPendientes = new List<Tarea>();
+var tareasCompletadas = new List<Tarea>();
 
-Console.WriteLine("\nTAREAS PENDIENTES");
-foreach (var prop in PropsTarea)
-{
-    if (!prop.Completed)
-    {
-        Console.WriteLine($"UserId: {prop.UserId} - Id: {prop.Id}");
-    }
-}
-
-Console.WriteLine("\nTAREAS REALIZADAS");
 foreach (var prop in PropsTarea)
 {
     if (prop.Completed)
+        tareasCompletadas.Add(prop);
+    else
+        tareasPendientes.Add(prop);
+}
+
+Console.WriteLine("\nTAREAS PENDIENTES:");
+foreach (var tarea in tareasPendientes)
+{
+    Console.WriteLine($"UserId: {tarea.UserId} - Id: {tarea.Id} - Title: {tarea.Title}");
+}
+
+Console.WriteLine("\nTAREAS REALIZADAS:");
+foreach (var tarea in tareasCompletadas)
+{
+    Console.WriteLine($"UserId: {tarea.UserId} - Id: {tarea.Id} - Title: {tarea.Title}");
+}
+
+string textoAGuardar = JsonSerializer.Serialize(PropsTarea);
+
+void GuardarArchivoTexto(string nombreArchivo, string datos)
+{
+    using (var archivo = new FileStream(nombreArchivo, FileMode.Create))
     {
-        Console.WriteLine($"UserId: {prop.UserId} - Id: {prop.Id}");
+        using (var strWriter = new StreamWriter(archivo)) // StreamWriter sirve para escribir texto dentro del FileStream
+        {
+            strWriter.Write(datos);
+        }
     }
 }
 
-string rutaReporte = Path.Combine(@"C:\Users\Alumno\Desktop\tl1-tp10-2025-MLucasDelgado\Tareas", "tareas.json");
-var writer = new StreamWriter(rutaReporte);
-string jsonString = JsonSerializer.Serialize(PropsTarea);
-writer.WriteLine(jsonString);
-writer.Close();
-
-
-
+GuardarArchivoTexto("tareas.json", textoAGuardar);
