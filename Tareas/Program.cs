@@ -27,6 +27,7 @@ foreach (var tarea in tareasPendientes)
 }
 
 Console.WriteLine("\nTAREAS REALIZADAS:");
+
 foreach (var tarea in tareasCompletadas)
 {
     Console.WriteLine($"UserId: {tarea.UserId} - Id: {tarea.Id} - Title: {tarea.Title}");
