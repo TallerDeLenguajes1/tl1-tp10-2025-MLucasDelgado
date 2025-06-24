@@ -1,16 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/myQ-2FG7)
 
-# Trabajo Práctico N°10 – Taller de Lenguajes I – 2025
-
-**Alumno:** Lucas Delgado  
-**Carrera:** Programador Universitario / Licenciatura en Informática  
-**Año:** 2025
-
----
-
 ## Descripción
 
-Este repositorio contiene la resolución del Trabajo Práctico N°10 para la materia Taller de Lenguajes I.  
 Se desarrollaron aplicaciones de consola en C# que consumen APIs REST, muestran datos en consola y guardan la información en archivos JSON.
 
 Las aplicaciones están organizadas en las siguientes carpetas:
@@ -76,7 +67,7 @@ Las aplicaciones están organizadas en las siguientes carpetas:
 
 ## Tecnologías utilizadas
 
-- Lenguaje: C# (.NET 6.0)
+- Lenguaje: C# (.NET 8.0)
 - Librerías:
   - System.Net.Http.HttpClient
   - System.Text.Json
